@@ -1,0 +1,8 @@
+# Source pins for scripts/setup.py. Editable installs alone do not freeze source.
+[repositories.IsaacLab]
+url = "https://github.com/isaac-sim/IsaacLab.git"
+commit = "4ecd0b036da19ff6ad2bb4d621f886b63e9f6db8"
+
+[repositories.ProtoMotions]
+url = "https://github.com/NVlabs/ProtoMotions.git"
+commit = "607ca7a0bb92e261120bcab8d9f97f28b3130ffc"

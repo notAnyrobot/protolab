@@ -1,0 +1,121 @@
+[build-system]
+requires = ["setuptools>=69.5.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "proto-playground"
+version = "0.1.0"
+description = "An independent IsaacLab extension playground for NVIDIA ProtoMotions"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = ["protomotions[isaaclab]"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["proto_playground*"]
+
+# IsaacLab's source packages do not declare their third-party dependencies.
+# Preserve its pinned workspace requirements here, including the currently
+# incompatible MoviePy constraint. Do not suppress upstream conflicts.
+[dependency-groups]
+isaaclab-workspace = [
+    "isaaclab",
+    "isaaclab-assets",
+    "isaaclab-contrib",
+    "isaaclab-experimental",
+    "isaaclab-newton",
+    "isaaclab-ov",
+    "isaaclab-ovphysx",
+    "isaaclab-physx",
+    "isaaclab-ppisp",
+    "isaaclab-rl",
+    "isaaclab-tasks",
+    "isaaclab-tasks-experimental",
+    "isaaclab-visualizers",
+    "numpy>=2",
+    "torch>=2.11",
+    "torchvision>=0.26.0",
+    "torchaudio>=2.11",
+    "onnx>=1.18.0",
+    "prettytable>=3.3.0",
+    "psutil",
+    "protobuf>=4.25.8,!=5.26.0",
+    "hidapi>=0.14.0",
+    "gymnasium>=1.2.0",
+    "trimesh",
+    "pyglet>=2.1.6,<3",
+    "pytetwild==0.2.3",
+    "transformers==4.57.6",
+    "einops",
+    "warp-lang==1.15.0.dev20260626",
+    "matplotlib>=3.10.3",
+    "pillow>=12.1.1",
+    "botocore",
+    "starlette>=0.46.0,<0.50",
+    "omniverseclient==2.71.1.7015",
+    "filelock",
+    "lazy_loader>=0.4",
+    "pin",
+    "pin-pink==3.3.0",
+    "daqp==0.8.5",
+    "usd-core>=25.11,<26.0",
+    "hf-xet>=1.4.1,<2.0.0",
+    "tensorboard",
+    "numba>=0.63.1",
+    "hydra-core",
+    "h5py>=3.15.0",
+    "moviepy>=1.0.3,<2.0.0.dev0",
+    "packaging",
+    "tqdm>=4.67.1",
+    "rsl-rl-lib==5.4.1",
+    "onnxscript>=0.5",
+    "newton[sim]>=1.2.0",
+    "newton-usd-schemas>=0.2.0",
+    "PyOpenGL-accelerate>=3.1.0",
+    "imgui-bundle>=1.92.5",
+    "typing-extensions>=4.12.2",
+ ]
+
+[tool.uv]
+required-version = ">=0.11.32"
+default-groups = ["isaaclab-workspace"]
+environments = ["sys_platform == 'linux' and platform_machine == 'x86_64'"]
+index-strategy = "unsafe-best-match"
+prerelease = "allow"
+# These overrides are from the pinned IsaacLab workspace, not invented pins.
+override-dependencies = [
+    "numpy>=2",
+    "newton[sim] @ git+https://github.com/newton-physics/newton.git@c7ae7c7648cd0717df39e5c94b95d5a02c997320",
+    "newton-usd-schemas>=0.3.1",
+    "torch==2.11.0",
+    "torchvision==0.26.0",
+    "torchaudio==2.11.0",
+ ]
+
+[[tool.uv.index]]
+name = "nvidia"
+url = "https://pypi.nvidia.com"
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.uv.sources]
+protomotions = { git = "https://github.com/NVlabs/ProtoMotions.git", lfs = true }
+"isaaclab" = { git = "https://github.com/isaac-sim/IsaacLab.git", rev = "4ecd0b036da19ff6ad2bb4d621f886b63e9f6db8", subdirectory = "source/isaaclab" }
+"isaaclab-assets" = { git = "https://github.com/isaac-sim/IsaacLab.git", rev = "4ecd0b036da19ff6ad2bb4d621f886b63e9f6db8", subdirectory = "source/isaaclab_assets" }
+"isaaclab-contrib" = { git = "https://github.com/isaac-sim/IsaacLab.git", rev = "4ecd0b036da19ff6ad2bb4d621f886b63e9f6db8", subdirectory = "source/isaaclab_contrib" }
+"isaaclab-experimental" = { git = "https://github.com/isaac-sim/IsaacLab.git", rev = "4ecd0b036da19ff6ad2bb4d621f886b63e9f6db8", subdirectory = "source/isaaclab_experimental" }
+"isaaclab-newton" = { git = "https://github.com/isaac-sim/IsaacLab.git", rev = "4ecd0b036da19ff6ad2bb4d621f886b63e9f6db8", subdirectory = "source/isaaclab_newton" }
+"isaaclab-ov" = { git = "https://github.com/isaac-sim/IsaacLab.git", rev = "4ecd0b036da19ff6ad2bb4d621f886b63e9f6db8", subdirectory = "source/isaaclab_ov" }
+"isaaclab-ovphysx" = { git = "https://github.com/isaac-sim/IsaacLab.git", rev = "4ecd0b036da19ff6ad2bb4d621f886b63e9f6db8", subdirectory = "source/isaaclab_ovphysx" }
+"isaaclab-physx" = { git = "https://github.com/isaac-sim/IsaacLab.git", rev = "4ecd0b036da19ff6ad2bb4d621f886b63e9f6db8", subdirectory = "source/isaaclab_physx" }
+"isaaclab-ppisp" = { git = "https://github.com/isaac-sim/IsaacLab.git", rev = "4ecd0b036da19ff6ad2bb4d621f886b63e9f6db8", subdirectory = "source/isaaclab_ppisp" }
+"isaaclab-rl" = { git = "https://github.com/isaac-sim/IsaacLab.git", rev = "4ecd0b036da19ff6ad2bb4d621f886b63e9f6db8", subdirectory = "source/isaaclab_rl" }
+"isaaclab-tasks" = { git = "https://github.com/isaac-sim/IsaacLab.git", rev = "4ecd0b036da19ff6ad2bb4d621f886b63e9f6db8", subdirectory = "source/isaaclab_tasks" }
+"isaaclab-tasks-experimental" = { git = "https://github.com/isaac-sim/IsaacLab.git", rev = "4ecd0b036da19ff6ad2bb4d621f886b63e9f6db8", subdirectory = "source/isaaclab_tasks_experimental" }
+"isaaclab-visualizers" = { git = "https://github.com/isaac-sim/IsaacLab.git", rev = "4ecd0b036da19ff6ad2bb4d621f886b63e9f6db8", subdirectory = "source/isaaclab_visualizers" }
+torch = { index = "pytorch-cu128" }
+torchvision = { index = "pytorch-cu128" }
+torchaudio = { index = "pytorch-cu128" }
