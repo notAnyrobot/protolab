@@ -47,9 +47,18 @@
   apparent from the code.
 - Keep reusable behavior in `protolab.*`; experiments and scripts assemble and
   invoke it. Make runtime settings explicit in configuration or arguments.
+- Treat 300 lines per project Python file and 50 lines per function as soft
+  review thresholds. Above these, check for mixed responsibilities and separate
+  work when it improves the interface or keeps related knowledge together.
+  Keep scripts thin by moving reusable behavior into `protolab.*`.
+- Tests, configuration, and cohesive implementations may exceed these thresholds.
+  External and generated code are excluded. Do not split cohesive code solely
+  to satisfy a line count; no automated length check is required.
 - Add regression coverage for bug fixes and behavior checks for features. Follow
   `CONTRIBUTING.md` for validation; simulator changes require simulator checks.
   Report checks that cannot run because compute, dependencies, or data are missing.
+- For coding in Codex Cloud without a GPU, follow `docs/codex-cloud.md` for the
+  lightweight setup, supported checks, and validation limits.
 - Keep environments, credentials, upstream checkouts, datasets, and generated
   outputs out of commits. Preserve required notices for tracked third-party assets.
 
